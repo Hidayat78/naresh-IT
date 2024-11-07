@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script>
+        function ApplyClick() {
+            let brand = "",
+                priceRange = 0,
+                rating = "";
+
+            // Get the brand selected
+            let appleRadio = document.getElementById("optApple");
+            let samsungRadio = document.getElementById("optSamsung");
+            if (appleRadio.checked) {
+                brand = appleRadio.value;
+            }
+            if (samsungRadio.checked) {
+                brand = samsungRadio.value;
+            }
+
+            // Get the price range value
+            priceRange = document.getElementById("txtRange").value;
+
+            // Get the selected ratings
+            let fourRadio = document.getElementById("optFour");
+            let threeRadio = document.getElementById("optThree");
+
+            if (fourRadio.checked) {
+                rating += fourRadio.value + " ";
+            }
+            if (threeRadio.checked) {
+                rating += threeRadio.value + " ";
+            }
+
+            // Update the details display
+            document.getElementById("details").innerHTML = "You are searching for " + brand + "<br>" +
+                "Price range starting from ₹" + priceRange + "<br>" +
+                "With: " + rating;
+        }
+        
+    </script>
+</head>
+
+<body class="container-fluid">
+    <section class="mt-4 row">
+        <nav class="col-2 bg-light border-1">
+            <h2>Filter</h2>
+            <dl>
+                <dt>Select Brand</dt>
+                <dd>
+                    <div>
+                        <input id="optApple" class="form-check-input" type="radio" value="Apple" name="brand">
+                        <label>Apple</label>
+                    </div>
+                    <div>
+                        <input id="optSamsung" class="form-check-input" type="radio" value="Samsung" name="brand">
+                        <label>Samsung</label>
+                    </div>
+                </dd>
+                <dt>Price Range</dt>
+                <dd>
+                    <input type="range" value="10000" class="form-range" min="10000" max="40000" id="txtRange">
+                    <div>
+                        <span>₹10000</span>
+                        <span class="float-end">₹40000</span>
+                    </div>
+                </dd>
+                <dt>Rating</dt>
+                <dd>
+                    <div><input type="checkbox" id="optFour" value="4+ Rating" class="form-check-input"> 4
+                        <span class="bi text-success bi-star-fill"></span> & above
+                    </div>
+                    <div><input type="checkbox" id="optThree" value="3+ Rating" class="form-check-input"> 3
+                        <span class="bi text-success bi-star-fill"></span> & above
+                    </div>
+                </dd>
+            </dl>
+            <button onclick="ApplyClick()" class="btn btn-primary w-100 mb-2">Apply Filter</button>
+        </nav>
+        <main class="col-10 text-center">
+            <h2 id="details"></h2>
+        </main>
+    </section>
+</body>
+
+</html>
